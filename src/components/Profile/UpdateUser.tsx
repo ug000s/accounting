@@ -6,11 +6,15 @@ import { UPDATE_MODE_DEFAULT, UPDATE_MODE_EDIT_PROFILE, UPDATE_MODE_CHANGE_PASSW
 const UpdateUser = () => {
     const [updateMode, setUpdateMode] = useState(UPDATE_MODE_DEFAULT);
 
+    const close = () => {
+        setUpdateMode(UPDATE_MODE_DEFAULT);
+    };
+    
     switch (updateMode) {
         case UPDATE_MODE_EDIT_PROFILE:
-            return <EditProfile />;
+            return <EditProfile close={close} />;
         case UPDATE_MODE_CHANGE_PASSWORD:
-            return <ChangePassword />;
+            return <ChangePassword close={close} />;
         default:
             return (
                 <div>

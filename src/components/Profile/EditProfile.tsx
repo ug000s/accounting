@@ -1,8 +1,18 @@
 import { useState } from "react";
 
-const EditProfile = () => {
+interface Props {
+    close: () => void;
+}
+
+const EditProfile = ({close}: Props) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+    const handleClickSave = () => {
+        // TODO: Add logic to save and close
+        alert('Save and close');
+        close();
+    }
+    
     const handleClickClear = () => {
         setFirstName("");
         setLastName("");
@@ -24,10 +34,8 @@ const EditProfile = () => {
                     onChange={(e) => setLastName(e.target.value)}
                 />
             </label>
-            {/* TODO: Add logic to save and close */}
-            <button >Save and close</button>
-            {/* TODO: Add logic to close without saving */}
-            <button>Close without saving</button>
+            <button onClick={handleClickSave} >Save and close</button>
+            <button onClick={close}>Close without saving</button>
             <button onClick={handleClickClear}>Clear</button>
         </div>
     );

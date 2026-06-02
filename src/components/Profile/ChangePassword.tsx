@@ -1,11 +1,22 @@
 import { useState } from "react";
 
-const ChangePassword = () => {
-    const [currentPassword, setCurrentPassword] = useState("");
+const ChangePassword = ({close}: {close: () => void;}) => {
+    const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
+    const handleClickSave = () => {
+        if (newPassword === confirmNewPassword && newPassword !== oldPassword) {
+            // TODO: Add logic to save and close
+            alert('Save and close clicked');
+            close();
+        } else {
+            alert('New password and confirm password do not match or new password is the same as old password');
+        }
+
+    }
+    
     const handleClickClear = () => {
-        setCurrentPassword("");
+        setOldPassword("");
         setNewPassword("");
         setConfirmNewPassword("");
     }
@@ -14,9 +25,9 @@ const ChangePassword = () => {
         <div>
             <label>
                 Current Password:
-                <input type="password"
-                    value={currentPassword}
-                    onChange={(e) => setCurrentPassword(e.target.value)}
+                <input type={"password"}
+                    value={oldPassword}
+                    onChange={(e) => setOldPassword(e.target.value)}
                 />
             </label>
             <label>
@@ -33,10 +44,8 @@ const ChangePassword = () => {
                     onChange={(e) => setConfirmNewPassword(e.target.value)}
                 />
             </label>
-            {/* TODO: Add logic to save and close */}
-            <button>Save and close</button>
-            {/* TODO: Add logic to close without saving */}
-            <button>Close without saving</button>
+            <button onClick={handleClickSave}>Save and close</button>
+            <button onClick={close}>Close without saving</button>
             <button onClick={handleClickClear}>Clear</button>
         </div>
     );
