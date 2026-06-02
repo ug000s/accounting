@@ -4,7 +4,7 @@ interface Props {
     close: () => void;
 }
 
-const EditProfile = ({close}: Props) => {
+const EditProfile = ({ close }: Props) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const handleClickSave = () => {
@@ -12,7 +12,7 @@ const EditProfile = ({close}: Props) => {
         alert('Save and close');
         close();
     }
-    
+
     const handleClickClear = () => {
         setFirstName("");
         setLastName("");

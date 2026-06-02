@@ -9,7 +9,7 @@ const UpdateUser = () => {
     const close = () => {
         setUpdateMode(UPDATE_MODE_DEFAULT);
     };
-    
+
     switch (updateMode) {
         case UPDATE_MODE_EDIT_PROFILE:
             return <EditProfile close={close} />;

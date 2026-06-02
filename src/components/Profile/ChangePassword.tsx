@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ChangePassword = ({close}: {close: () => void;}) => {
+const ChangePassword = ({ close }: { close: () => void; }) => {
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
@@ -14,7 +14,7 @@ const ChangePassword = ({close}: {close: () => void;}) => {
         }
 
     }
-    
+
     const handleClickClear = () => {
         setOldPassword("");
         setNewPassword("");
