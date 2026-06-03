@@ -1,14 +1,20 @@
 import { useState } from "react";
+import { useAppDispatch } from "../../app/hooks";
+import { registerUser } from "../../features/api/accountingApi";
 
 const SignUp = () => {
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+    const dispatch = useAppDispatch();
 
     const handleClickSignUp = () => {
-        // TODO: Implement sign up logic
-        alert("Sign up clicked");
+        if(login.trim() && password.trim() && firstName.trim() && lastName.trim()) {
+            dispatch(registerUser({ login, password, firstName, lastName }));
+        } else {
+            console.error("All fields are required");
+        }
     };
 
     const handleClickClear = () => {

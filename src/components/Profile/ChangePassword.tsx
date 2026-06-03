@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { useAppDispatch } from "../../app/hooks";
+import { changePassword } from "../../features/api/accountingApi";
 
 const ChangePassword = ({ close }: { close: () => void; }) => {
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
+    const dispatch = useAppDispatch()
+    
     const handleClickSave = () => {
         if (newPassword === confirmNewPassword && newPassword !== oldPassword) {
-            // TODO: Add logic to save and close
-            alert('Save and close clicked');
+            dispatch(changePassword({newPassword, oldPassword}))
             close();
         } else {
             alert('New password and confirm password do not match or new password is the same as old password');

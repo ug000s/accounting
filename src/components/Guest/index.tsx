@@ -4,7 +4,7 @@ import SignUp from "./SignUp.tsx";
 
 const Guest = () => {
     // isSigdIn means window for SignIn component is active
-    const [isSigdIn, setIsSigdIn] = useState(false);
+    const [isSigdIn, setIsSigdIn] = useState(true);
     return (
         <div>
             {isSigdIn ? <SignIn /> : <SignUp />}

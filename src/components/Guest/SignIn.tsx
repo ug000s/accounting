@@ -1,12 +1,19 @@
 import { useState } from "react";
+import { useAppDispatch } from "../../app/hooks";
+import { fetchUser } from "../../features/api/accountingApi";
+import { createToken } from "../../utils/constants";
 
 const SignIn = () => {
     const [login, setLogin] = useState("");
-    const [password, setPassword] = useState("");
+    const [password, setPassword] = useState("");   
+    const dispatch = useAppDispatch();  
 
     const handleClickSignIn = () => {
-        // TODO: Implement sign in logic
-        alert("Sign in clicked with " + login + " " + password);
+        if(login.trim() && password.trim()) {
+            dispatch(fetchUser(createToken(login.trim(), password.trim())));
+        } else {
+            console.error("Login and password are required");
+        }
     };
 
     const handleClickClear = () => {
