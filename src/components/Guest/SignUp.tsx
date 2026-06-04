@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
-import { registerUser } from "../../features/api/accountingApi";
+import { useRegisterUserMutation } from "../../features/api/accountingApi";
+import { setToken } from "../../features/token/tokenSlice.ts";
+import { createToken } from "../../utils/constants";
 
 const SignUp = () => {
     const [login, setLogin] = useState("");
@@ -8,12 +10,18 @@ const SignUp = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const dispatch = useAppDispatch();
+    const [registerUser] = useRegisterUserMutation();
 
-    const handleClickSignUp = () => {
-        if(login.trim() && password.trim() && firstName.trim() && lastName.trim()) {
-            dispatch(registerUser({ login, password, firstName, lastName }));
-        } else {
-            console.error("All fields are required");
+    const handleClickSignUp = async () => {
+        try {
+            const { data, error } = await registerUser({ login, password, firstName, lastName });
+            if (error) {
+                console.error("sign up error", error);
+            } else {
+                dispatch(setToken(createToken(data.login, password)));
+            }
+        } catch (error) {
+            console.error("unknown error", error);
         }
     };
 

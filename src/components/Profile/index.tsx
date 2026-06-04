@@ -1,20 +1,14 @@
 import ProfileData from "./ProfileData.tsx";
 import UpdateUser from "./UpdateUser.tsx";
 import { useAppDispatch } from "../../app/hooks";
-import { clearUser } from "../../features/user/userSlice.ts";
-import {clearToken} from '../../features/token/tokenSlice.ts'
+import {clearToken} from '../../features/token/tokenSlice'
 const Profile = () => {
     const dispatch = useAppDispatch();
-
-    const handleClickLogout = () => {
-        dispatch(clearToken());
-        dispatch(clearUser());
-    };
     
     return (
         <div>
             <ProfileData />
-            <button onClick={handleClickLogout}>Logout</button>
+            <button onClick={() => dispatch(clearToken())}>Logout</button>
             <UpdateUser />
         </div>
     );
