@@ -4,6 +4,7 @@ import { BASE_URL } from "../../utils/constants";
 
 export const accountingApi = createApi({
     reducerPath: 'accountingApi',
+    tagTypes: ['profile'],
     baseQuery: fetchBaseQuery({
         baseUrl: BASE_URL,
     }),
@@ -25,6 +26,7 @@ export const accountingApi = createApi({
                     Authorization: token,
                 },
             }),
+            providesTags: ['profile'],
         }),
         updateUser: builder.mutation<UserProfile, { user: UserUpdate, login: string, token: string }>({
             query: ({ user, login, token }) => ({
@@ -35,6 +37,7 @@ export const accountingApi = createApi({
                 },
                 body: user,
             }),
+            invalidatesTags: ['profile'],
         }),
         changePassword: builder.mutation<void, { newPassword: string, token: string }>({
             query: ({ newPassword, token }) => ({
