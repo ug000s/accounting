@@ -1,0 +1,8 @@
+---build---
+docker build -t ijn123/accounting:latest -t ijn123/accounting:0.1.0 .
+
+---run---
+docker run --name accounting -d -p 80:80 ijn123/accounting:0.1.0
+
+---push---
+docker push -a ijn123/accounting
